@@ -11,7 +11,7 @@ st.markdown("""
     <style>
         h1.title {
             text-align: center;
-            font-size: 35px;
+            font-size: 30px;
             color: #2E86C1;
         }
         .stTextInput > div > div > input {
