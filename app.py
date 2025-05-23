@@ -36,7 +36,7 @@ st.markdown("<h1 class='title'>『ルール1』<br>株価チェックアプリ</
 st.caption("※このアプリは東京証券取引所（.T）上場企業のみに対応しています。")
 
 # 入力欄
-code = st.text_input("企業コード（数字のみ、例: 7203）", "7203")
+code = st.text_input("企業コード（半角英数字のみ、例: 7203）", "7203")
 
 if code:
     ticker = code + ".T"
