@@ -33,8 +33,9 @@ st.markdown(
 st.markdown("---")
 st.caption("📌 **注意事項**")
 st.caption("・このアプリは東京証券取引所（.T）上場企業のみに対応しています。")
-st.caption("・ゴールデンウィークなどの連休・イレギュラーな日程には正確に対応できない場合があります。")
-st.caption("・企業名はYahoo!financeから取得しており、英語表示となります。ご了承ください。")
+st.caption("・Yahoo!financenoのチャートの更新タイミングに連動いたします。")
+st.caption("・Yahoo!finance：日中足チャート/リアルタイム")
+st.caption("・Yahoo!finance：日足チャート/当日の20時30分ごろ")
 st.markdown("---")
 
 # ヘルパー関数：緑の枠＋大きな数値
@@ -54,7 +55,7 @@ def green_box(label, value, unit):
 
 
 # 入力
-code = st.text_input("企業コード（数字のみ、例: 7203）", "7203")
+code = st.text_input("企業コード（半角英数字のみ、例: 7203）", "7203")
 st.caption("企業コードをこちらにご入力ください。")
 
 # 株価取得＆表示
@@ -105,6 +106,11 @@ if code:
     except Exception as e:
         st.error(f"データ取得中にエラーが発生しました: {e}")
 
+st.markdown("---")
+st.caption("📌 **注意事項**")
+st.caption("・ゴールデンウィークなどの連休・イレギュラーな日程には正確に対応できない場合があります。")
+st.caption("・企業名はYahoo!financeから取得しており、英語表示となります。ご了承ください。")
+st.markdown("---")
 # 計算ツール
 if recent_high is not None and recent_low is not None:
     st.markdown("---")
