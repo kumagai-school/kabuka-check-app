@@ -30,7 +30,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.caption("※このアプリは東京証券取引所（.T）上場企業のみに対応しています。")
+st.markdown("---")
+st.caption("📌 **注意事項**")
+st.caption("・このアプリは東京証券取引所（.T）上場企業のみに対応しています。")
+st.caption("・ゴールデンウィークなどの連休・イレギュラーな日程には正確に対応できない場合があります。")
+st.caption("・企業名はYahoo!financeから取得しており、英語表示となります。ご了承ください。")
+st.markdown("---")
 
 # ヘルパー関数：緑の枠＋大きな数値
 def green_box(label, value, unit):
@@ -50,6 +55,7 @@ def green_box(label, value, unit):
 
 # 入力
 code = st.text_input("企業コード（数字のみ、例: 7203）", "7203")
+st.caption("企業コードをこちらにご入力ください。")
 
 # 株価取得＆表示
 recent_high = None
@@ -106,6 +112,7 @@ if recent_high is not None and recent_low is not None:
 
     high_input = st.number_input("高値（円）", min_value=0.0, value=recent_high, format="%.2f")
     low_input  = st.number_input("2週間以内の最安値（円）", min_value=0.0, value=recent_low, format="%.2f")
+    st.caption("必要でれば高値・安値を修正して「計算する」をタップしてください。")
 
     if st.button("計算する"):
         if high_input > low_input and low_input > 0:
@@ -125,5 +132,6 @@ if recent_high is not None and recent_low is not None:
 
 st.markdown("---")
 st.caption("📌 **注意事項**")
-st.caption("・東証銘柄のみ対応しています。")
-st.caption("・ゴールデンウィークなどの連休には対応していません。")
+st.caption("・このアプリは東京証券取引所（.T）上場企業のみに対応しています。")
+st.caption("・ゴールデンウィークなどの連休・イレギュラーな日程には正確に対応できない場合があります。")
+st.caption("・企業名はYahoo!financeから取得しており、英語表示となります。ご了承ください。")
