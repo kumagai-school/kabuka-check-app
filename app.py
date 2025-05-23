@@ -33,9 +33,9 @@ st.markdown(
 st.markdown("---")
 st.caption("📌 **注意事項**")
 st.caption("・このアプリは東京証券取引所（.T）上場企業のみに対応しています。")
-st.caption("・Yahoo!financenoのチャートの更新タイミングに連動いたします。")
-st.caption("・Yahoo!finance：日中足チャート/リアルタイム")
-st.caption("・Yahoo!finance：日足チャート/当日の20時30分ごろ")
+st.caption("・リアルタイムではありません。")
+st.caption("・Yahoo!financeのチャート更新タイミングに連動いたします。")
+st.caption("   ◇日足チャート：当日の20時30分ごろ")
 st.markdown("---")
 
 # ヘルパー関数：緑の枠＋大きな数値
