@@ -114,8 +114,14 @@ st.caption("・企業名はYahoo!financeから取得しており、英語表示�
 # 計算ツール
 if recent_high is not None and recent_low is not None:
     st.markdown("---")
-    st.markdown("<h2 style='text-align:left;'>ルール１<br>上げ幅の半値押し 計算ツール</h2>", unsafe_allow_html=True)
-
+    st.markdown(
+    """
+    <h2 style='text-align:left; color:#2E86C1; font-size:26px; line-height:1.4em;'>
+        上げ幅の半値押し<br>計算ツール
+    </h2>
+    """,
+    unsafe_allow_html=True
+    )
     high_input = st.number_input("高値（円）", min_value=0.0, value=recent_high, format="%.2f")
     low_input  = st.number_input("2週間以内の最安値（円）", min_value=0.0, value=recent_low, format="%.2f")
     st.caption("必要でれば高値・安値を修正して「計算する」をタップしてください。")
