@@ -9,7 +9,15 @@ import math
 st.set_page_config(page_title="ルール1 株価チェック", layout="centered")
 
 # タイトル
-st.markdown("<h1 style='text-align:center; color:#2E86C1;'>『ルール1』<br>株価チェックアプリ</h1>", unsafe_allow_html=True)
+st.markdown(
+    """
+    <h1 style='text-align:center; color:#2E86C1; font-size:22px; line-height:1.4em;'>
+    [ルール1]<br>株価チェックアプリ
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
+
 
 st.markdown("---")
 st.caption("📌 **注意事項**")
@@ -61,8 +69,8 @@ if code:
                 low_info_str = "該当期間に安値データがありません"
 
             st.subheader(f"{company_name}（{code}）の株価情報")
-            st.write(f"✅ **直近5営業日の高値**: {recent_high:.2f} 円（{high_date_str}）")
-            st.write(f"✅ **高値日から過去2週間以内の安値**: {low_info_str}")
+            st.write(f"✅ **直近5営業日の高値**:<br> {recent_high:.2f} 円（{high_date_str}）")
+            st.write(f"✅ **高値日から過去2週間以内の安値**:<br> {low_info_str}")
         else:
             st.error("株価データが見つかりません。企業コードを確認してください。")
 
@@ -72,7 +80,7 @@ if code:
 # ---- 計算ツール ----
 if recent_high is not None and recent_low is not None:
     st.markdown("---")
-    st.markdown("<h2 style='text-align:center;'>ルール１<br>上げ幅の半値押し 計算ツール</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align:center;'>上げ幅の半値押し 計算ツール</h2>", unsafe_allow_html=True)
 
     high_input = st.number_input("高値（円）", min_value=0.0, value=recent_high, format="%.2f")
     low_input  = st.number_input("2週間以内の最安値（円）", min_value=0.0, value=recent_low, format="%.2f")
