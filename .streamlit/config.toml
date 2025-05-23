@@ -9,3 +9,6 @@ gatherUsageStats = false
 
 [ui]
 hideSidebarNav = true
+
+[ui]
+hideSidebarNav = true
