@@ -1,42 +1,29 @@
+
 import streamlit as st
 import yfinance as yf
 from datetime import datetime, timedelta
 import pandas as pd
+import math
 
-# ページ設定（スマホ向け）
+# ページ設定
 st.set_page_config(page_title="ルール1 株価チェック", layout="centered")
 
-# CSS：タイトルのみ中央揃え、他は左寄せ＋フォント調整
-st.markdown("""
-    <style>
-        h1.title {
-            text-align: center;
-            font-size: 30px;
-            color: #2E86C1;
-        }
-        .stTextInput > div > div > input {
-            font-size: 18px;
-        }
-        .stSubheader {
-            font-size: 22px !important;
-        }
-        .result {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-        .note {
-            font-size: 14px;
-            color: gray;
-        }
-    </style>
-""", unsafe_allow_html=True)
+# タイトル
+st.markdown("<h1 style='text-align:center; color:#2E86C1;'>『ルール1』<br>株価チェックアプリ</h1>", unsafe_allow_html=True)
 
-# タイトル（中央揃え）
-st.markdown("<h1 class='title'>『ルール1』<br>株価チェックアプリ</h1>", unsafe_allow_html=True)
-st.caption("※このアプリは東京証券取引所（.T）上場企業のみに対応しています。")
+st.markdown("---")
+st.caption("📌 **注意事項**")
+st.caption("・東証銘柄のみ対応しています。")
+st.caption("・ゴールデンウィークなどの連休・イレギュラーな日程には正確に対応できない場合があります。。")
+st.caption("・企業名はYahoo!financeから読込しているため英語表記となります。")
+st.markdown("---")
 
-# 入力欄
+# 企業コード入力
 code = st.text_input("企業コード（半角英数字のみ、例: 7203）", "7203")
+
+# 株価取得＆表示
+recent_high = None
+recent_low = None
 
 if code:
     ticker = code + ".T"
@@ -50,35 +37,63 @@ if code:
 
         if not df.empty:
             recent_data = df.tail(5)
-            recent_high = float(recent_data['High'].max())
-            high_date = recent_data['High'].idxmax()
+            recent_high = float(recent_data["High"].max())
+
+            # 高値日処理
+            high_date = recent_data["High"].idxmax()
             if isinstance(high_date, pd.Series):
                 high_date = high_date.iloc[0]
-            high_date_str = high_date.strftime('%Y-%m-%d')
+            high_date_str = pd.to_datetime(high_date).strftime("%Y-%m-%d")
 
+            # 高値日から過去14日間で安値を取得
             start_low = high_date - timedelta(days=14)
             end_low = high_date
-            low_range_data = df[(df.index >= start_low) & (df.index <= end_low)]
+            win = df[(df.index >= start_low) & (df.index <= end_low)]
 
-            if not low_range_data.empty:
-                recent_low = float(low_range_data['Low'].min())
-                low_date = low_range_data['Low'].idxmin()
+            if not win.empty:
+                recent_low = float(win["Low"].min())
+                low_date = win["Low"].idxmin()
                 if isinstance(low_date, pd.Series):
                     low_date = low_date.iloc[0]
-                low_date_str = low_date.strftime('%Y-%m-%d')
-                low_info = f"{recent_low:.2f} 円（{low_date_str}）"
+                low_date_str = pd.to_datetime(low_date).strftime("%Y-%m-%d")
+                low_info_str = f"{recent_low:.2f} 円（{low_date_str}）"
             else:
-                low_info = "該当期間に安値データが見つかりませんでした"
+                low_info_str = "該当期間に安値データがありません"
 
             st.subheader(f"{company_name}（{code}）の株価情報")
-            st.markdown(f"<div class='result'>✅直近5営業日の高値:<br>  {recent_high:.2f} 円（{high_date_str}）</div>", unsafe_allow_html=True)
-            st.markdown(f"<div class='result'>✅高値日から過去2週間以内の安値:<br>  {low_info}</div>", unsafe_allow_html=True)
+            st.write(f"✅ **直近5営業日の高値**: {recent_high:.2f} 円（{high_date_str}）")
+            st.write(f"✅ **高値日から過去2週間以内の安値**: {low_info_str}")
         else:
             st.error("株価データが見つかりません。企業コードを確認してください。")
 
     except Exception as e:
         st.error(f"データ取得中にエラーが発生しました: {e}")
 
-# 注意事項
+# ---- 計算ツール ----
+if recent_high is not None and recent_low is not None:
+    st.markdown("---")
+    st.markdown("<h2 style='text-align:center;'>ルール１<br>上げ幅の半値押し 計算ツール</h2>", unsafe_allow_html=True)
+
+    high_input = st.number_input("高値（円）", min_value=0.0, value=recent_high, format="%.2f")
+    low_input  = st.number_input("2週間以内の最安値（円）", min_value=0.0, value=recent_low, format="%.2f")
+
+    if st.button("計算する"):
+        if high_input > low_input and low_input > 0:
+            rise_rate = high_input / low_input
+            width     = high_input - low_input
+            half      = math.floor(width / 2)
+            retrace   = math.floor(high_input - half)
+
+            st.success(f"✅ 上昇率：{rise_rate:.2f} 倍")
+            st.success(f"✅ 上げ幅：{width:.2f} 円")
+            st.success(f"✅ 上げ幅の半値：{half} 円")
+            st.success(f"✅ 上げ幅の半値押し：{retrace} 円")
+        else:
+            st.warning("高値＞安値 の数値を正しく入力してください。")
+
 st.markdown("---")
-st.markdown("<div class='note'>📌 <strong>注意事項</strong><br>・このアプリは東京証券取引所（.T）上場企業のみに対応しています。<br>・ゴールデンウィークなどの連休・イレギュラーな日程には正確に対応できない場合があります。<br>・企業名はYahoo!financeから取得しており、英語表示となります。ご了承ください。</div>", unsafe_allow_html=True)
+st.caption("📌 **注意事項**")
+st.caption("・東証銘柄のみ対応しています。")
+st.caption("・ゴールデンウィークなどの連休・イレギュラーな日程には正確に対応できない場合があります。。")
+st.caption("・企業名はYahoo!financeから読込しているため英語表記となります。")
+st.markdown("---")
