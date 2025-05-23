@@ -110,7 +110,7 @@ st.markdown("---")
 st.caption("📌 **注意事項**")
 st.caption("・ゴールデンウィークなどの連休・イレギュラーな日程には正確に対応できない場合があります。")
 st.caption("・企業名はYahoo!financeから取得しており、英語表示となります。ご了承ください。")
-st.markdown("---")
+
 # 計算ツール
 if recent_high is not None and recent_low is not None:
     st.markdown("---")
