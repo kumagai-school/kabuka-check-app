@@ -71,8 +71,8 @@ if code:
                 low_info = "該当期間に安値データが見つかりませんでした"
 
             st.subheader(f"{company_name}（{code}）の株価情報")
-            st.markdown(f"<div class='result'>✅直近5営業日の高値: {recent_high:.2f} 円（{high_date_str}）</div>", unsafe_allow_html=True)
-            st.markdown(f"<div class='result'>✅高値日から過去2週間以内の安値: {low_info}</div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='result'>✅直近5営業日の高値:<br>  {recent_high:.2f} 円（{high_date_str}）</div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='result'>✅高値日から過去2週間以内の安値:<br>  {low_info}</div>", unsafe_allow_html=True)
         else:
             st.error("株価データが見つかりません。企業コードを確認してください。")
 
