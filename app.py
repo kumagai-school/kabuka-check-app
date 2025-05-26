@@ -56,7 +56,7 @@ def green_box(label, value, unit):
 
 # 入力
 code = st.text_input("企業コード（半角英数字のみ、例: 7203）", "7203")
-st.caption("企業コードをこちらにご入力ください。")
+st.caption("ルール１に該当する企業コードをこちらにご入力ください。")
 
 # 株価取得＆表示
 recent_high = None
