@@ -104,10 +104,9 @@ if code:
 
     except Exception as e:
         st.error(f"データ取得中にエラーが発生しました: {e}")
+st.markdown("---")
 st.caption("📌 **注意事項**")
-st.caption("・Yahoo!financeのチャート更新タイミングに連動いたします。")
-st.caption("   日足チャート：当日の20時30分ごろ")
-
+st.caption("・Yahoo!financeのチャート更新タイミング(日足チャート：当日の20時30分ごろ)に連動いたします。")
 st.caption("・ゴールデンウィークなどの連休・イレギュラーな日程には正確に対応できない場合があります。")
 
 
@@ -145,5 +144,5 @@ if recent_high is not None and recent_low is not None:
 st.markdown("---")
 st.caption("📌 **注意事項**")
 st.caption("・このアプリは東京証券取引所（.T）上場企業のみに対応しています。")
-st.caption("・Yahoo!financeのチャート更新タイミングに連動いたします。")
-st.caption("   日足チャート：当日の20時30分ごろ")
+st.caption("・Yahoo!financeのチャート更新タイミング(日足チャート：当日の20時30分ごろ)に連動いたします。")
+st.markdown("---")
