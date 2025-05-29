@@ -35,7 +35,7 @@ st.caption("📌 **注意事項**")
 st.caption("・このアプリは東京証券取引所（.T）上場企業のみに対応しています。")
 st.caption("・リアルタイムではありません。")
 st.caption("・Yahoo!financeのチャート更新タイミングに連動いたします。")
-st.caption("   ◇日足チャート：当日の20時30分ごろ")
+st.caption("   日足チャート：当日の20時30分ごろ")
 st.markdown("---")
 
 # ヘルパー関数：緑の枠＋大きな数値
@@ -105,6 +105,8 @@ if code:
 
     except Exception as e:
         st.error(f"データ取得中にエラーが発生しました: {e}")
+st.caption("・Yahoo!financeのチャート更新タイミングに連動いたします。")
+st.caption("   日足チャート：当日の20時30分ごろ")
 
 st.markdown("---")
 st.caption("📌 **注意事項**")
