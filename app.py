@@ -75,7 +75,9 @@ if code:
 
         if not df.empty:
             recent_data = df.tail(5)
-            recent_high = float(recent_data["High"].max())
+            recent_high_value = recent_data["High"].max()
+            recent_high = float(recent_high_value.iloc[0]) if isinstance(recent_high_value, pd.Series) else float(recent_high_value)
+
 
             high_date = recent_data["High"].idxmax()
             if isinstance(high_date, pd.Series):
@@ -87,7 +89,9 @@ if code:
             win = df[(df.index >= start_low) & (df.index <= end_low)]
 
             if not win.empty:
-                recent_low = float(win["Low"].min())
+                recent_low_value = win["Low"].min()
+                recent_low = float(recent_low_value.iloc[0]) if isinstance(recent_low_value, pd.Series) else float(recent_low_value)
+
                 low_date = win["Low"].idxmin()
                 if isinstance(low_date, pd.Series):
                     low_date = low_date.iloc[0]
