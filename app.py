@@ -39,15 +39,6 @@ st.markdown("---")
 
 
 st.caption("ルール１に該当する企業コードをこちらにご入力ください。")
-    st.markdown(
-    """
-    <h2 style='text-align:left; color:#2E86C1; font-size:20px; line-height:1.4em;'>
-        ルール１に該当する企業コードをこちらにご入力ください。
-    </h2>
-    """,
-    unsafe_allow_html=True
-    )
-
 
 # ヘルパー関数：緑の枠＋大きな数値
 def green_box(label, value, unit):
