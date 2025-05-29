@@ -37,6 +37,18 @@ st.caption("・企業名はYahoo!financeから取得しており、英語表示�
 st.caption("・リアルタイム表示ではありません。")
 st.markdown("---")
 
+
+st.caption("ルール１に該当する企業コードをこちらにご入力ください。")
+    st.markdown(
+    """
+    <h2 style='text-align:left; color:#2E86C1; font-size:20px; line-height:1.4em;'>
+        ルール１に該当する企業コードをこちらにご入力ください。
+    </h2>
+    """,
+    unsafe_allow_html=True
+    )
+
+
 # ヘルパー関数：緑の枠＋大きな数値
 def green_box(label, value, unit):
     st.markdown(f"""
@@ -55,7 +67,6 @@ def green_box(label, value, unit):
 
 # 入力
 code = st.text_input("企業コード（半角英数字のみ、例: 7203）", "7203")
-st.caption("ルール１に該当する企業コードをこちらにご入力ください。")
 
 # 株価取得＆表示
 recent_high = None
@@ -123,7 +134,7 @@ if recent_high is not None and recent_low is not None:
     )
     high_input = st.number_input("高値（円）", min_value=0.0, value=recent_high, format="%.2f")
     low_input  = st.number_input("2週間以内の最安値（円）", min_value=0.0, value=recent_low, format="%.2f")
-    st.caption("必要でれば高値・安値を修正して「計算する」をタップしてください。")
+    st.caption("必要であれば高値・安値を修正して「計算する」をタップしてください。")
 
     if st.button("計算する"):
         if high_input > low_input and low_input > 0:
