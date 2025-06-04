@@ -31,12 +31,19 @@ st.markdown(
 )
 
 st.markdown("---")
-st.caption("📌 **注意事項**")
-st.caption("・このアプリは東京証券取引所（.T）上場企業のみに対応しています。")
-st.caption("・Yahoo!financeのチャート更新タイミング(日足チャート：当日の20時30分ごろ)に連動いたします。")
-st.caption("・ゴールデンウィークなどの連休・イレギュラーな日程には正確に対応できない場合があります。")
-st.markdown("---")
+st.markdown("<h4>📌 <strong>注意事項</strong></h4>", unsafe_allow_html=True)
 
+st.markdown("""
+<div style='color:red; font-size:14px;'>
+<ul>
+  <li>このアプリは東京証券取引所（.T）上場企業のみに対応しています。</li>
+  <li>Yahoo!financeのチャート更新タイミング（日足チャート：当日の20時30分ごろ）に連動いたします。</li>
+  <li>ゴールデンウィークなどの連休・イレギュラーな日程には正確に対応できない場合があります。</li>
+</ul>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("---")
 
 
 st.caption("ルール１に該当する企業コードをこちらにご入力ください。")
