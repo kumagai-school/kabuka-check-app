@@ -118,10 +118,18 @@ if code:
 
     except Exception as e:
         st.error(f"データ取得中にエラーが発生しました: {e}")
+
 st.markdown("---")
-st.caption("📌 **注意事項**")
-st.caption("・Yahoo!financeのチャート更新タイミング(日足チャート：当日の20時30分ごろ)に連動いたします。")
-st.caption("・ゴールデンウィークなどの連休・イレギュラーな日程には正確に対応できない場合があります。")
+st.markdown("<h4>📌 <strong>注意事項</strong></h4>", unsafe_allow_html=True)
+
+st.markdown("""
+<div style='color:red; font-size:14px;'>
+<ul>
+  <li>Yahoo!financeのチャート更新タイミング（日足チャート：当日の20時30分ごろ）に連動いたします。</li>
+  <li>ゴールデンウィークなどの連休・イレギュラーな日程には正確に対応できない場合があります。</li>
+</ul>
+</div>
+""", unsafe_allow_html=True)
 
 
 # 計算ツール
@@ -156,7 +164,16 @@ if recent_high is not None and recent_low is not None:
             st.warning("高値＞安値 の数値を正しく入力してください。")
 
 st.markdown("---")
-st.caption("📌 **注意事項**")
-st.caption("・このアプリは東京証券取引所（.T）上場企業のみに対応しています。")
-st.caption("・Yahoo!financeのチャート更新タイミング(日足チャート：当日の20時30分ごろ)に連動いたします。")
+st.markdown("<h4>📌 <strong>注意事項</strong></h4>", unsafe_allow_html=True)
+
+st.markdown("""
+<div style='color:red; font-size:14px;'>
+<ul>
+  <li>Yahoo!financeのチャート更新タイミング（日足チャート：当日の20時30分ごろ）に連動いたします。</li>
+  <li>ゴールデンウィークなどの連休・イレギュラーな日程には正確に対応できない場合があります。</li>
+</ul>
+</div>
+""", unsafe_allow_html=True)
+
 st.markdown("---")
+
