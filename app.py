@@ -3,7 +3,7 @@ import requests
 import math
 
 # 外部APIのURL（Cloudflare Tunnel 経由）
-API_URL = "https://mostly-finance-population-lb.trycloudflare.com/api/highlow"
+HIGHLOW_API = "https://mostly-finance-population-lb.trycloudflare.com/api/highlow"
 
 # ページ設定
 st.set_page_config(page_title="ルール1 株価チェック", layout="centered")
@@ -60,7 +60,7 @@ def green_box(label, value, unit):
 
 if code:
     try:
-        response = requests.get(API_URL, params={"code": code})
+        response = requests.get(HIGHLOW_API, params={"code": code})
         if response.status_code == 200:
             data = response.json()
             company_name = data.get("name", "企業名不明")
