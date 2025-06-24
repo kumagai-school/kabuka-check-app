@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import math
+import pandas as pd
 
 # 外部APIのURL（Cloudflare Tunnel 経由）
 HIGHLOW_API = "https://app.kumagai-stock.com/api/highlow"
@@ -40,7 +41,42 @@ st.markdown("""
 st.markdown("---")
 
 st.caption("ルール１に該当する企業コードをこちらにご入力ください。")
-code = st.text_input("企業コード（半角英数字のみ、例: 7203）", "7203")
+
+# --- URLパラメータ処理 ---
+query_code = st.query_params.get("code", "")
+if isinstance(query_code, list):
+    query_code = query_code[0]  # リストなら1つだけ取り出す
+default_code = query_code if query_code else "7203"
+
+# --- 企業コードの入力 ---
+code = st.text_input("企業コード（半角英数字のみ、例: 7203）", value=default_code)
+
+# 入力値のバリデーション（例：4桁の数字 or アルファベット混じりOK）
+if not code or not code.isalnum():
+    st.warning("正しい企業コードを入力してください（例：7203）")
+    st.stop()
+
+# --- API呼び出し ---
+def get_highlow_data(code):
+    try:
+        url = f"https://app.kumagai-stock.com/api/highlow/{code}"
+        res = requests.get(url, timeout=10)
+        res.raise_for_status()
+        return res.json()
+    except requests.RequestException as e:
+        st.error(f"APIリクエストエラー：{e}")
+        return None
+
+def get_candle_data(code):
+    try:
+        url = f"https://app.kumagai-stock.com/api/candle/{code}"
+        res = requests.get(url, timeout=10)
+        res.raise_for_status()
+        return res.json()
+    except requests.RequestException as e:
+        st.error(f"APIリクエストエラー：{e}")
+        return None
+
 
 recent_high = None
 recent_low = None
