@@ -176,7 +176,14 @@ if code.strip():  # 入力がある場合、自動で表示
                       tickangle=-45     # 日付が重なりにくくなります
                   )
               )
-              st.plotly_chart(fig, use_container_width=True, key="chart")
+              st.plotly_chart(fig, use_container_width=True, config={
+                  "staticPlot": False,
+                  "displayModeBar": False,
+                  "scrollZoom": False,
+                  "doubleClick": False,
+                  "editable": False,
+                  "selectable": False
+              })
 
         except Exception as e:
           st.error(f"チャート取得中にエラーが発生しました: {e}")
