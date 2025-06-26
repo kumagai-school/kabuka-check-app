@@ -168,23 +168,22 @@ if code.strip():  # 入力がある場合、自動で表示
 
               fig.update_layout(
                   title=f"{data.get('name', '')} の2週間ローソク足チャート",
+                  dragmode=False,  # ← ドラッグでのパン・選択を禁止
                   xaxis_title="日付",
                   yaxis_title="株価",
                   xaxis_rangeslider_visible=False,
                   xaxis=dict(
                       type='category',  # ← 営業日のみ詰めて表示
-                      tickangle=-45     # 日付が重なりにくくなります
+                      tickangle=-45 ,   # 日付が重なりにくくなります
+                      fixedrange=True ,
                   )
+                      yaxis=dict(fixedrange=True)   # ← Y軸のズーム・移動を禁止
               )
-              st.plotly_chart(fig, use_container_width=True, config={
-                  "staticPlot": False,
-                  "displayModeBar": True,
-                  "scrollZoom": True,
-                  "doubleClick": True,
-                  "editable": True,
-                  "selectable": True
-              })
 
+              st.plotly_chart(fig, use_container_width=True, config={
+                  "displayModeBar": False,
+                  "staticPlot": False  # ツールチップを残すため False にしておく
+              })
         except Exception as e:
           st.error(f"チャート取得中にエラーが発生しました: {e}")
 
