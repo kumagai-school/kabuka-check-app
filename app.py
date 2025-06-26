@@ -167,7 +167,7 @@ if code.strip():  # 入力がある場合、自動で表示
               ])
 
               fig.update_layout(
-                  title=f"{data.get('name', '')} の2週間ローソク足チャート",
+                  title=f"{data.get('name', '')} の3ヵ月ローソク足チャート",
                   dragmode=False,  # ドラッグでのパン・選択を禁止
                   xaxis_title="日付",
                   yaxis_title="株価",
