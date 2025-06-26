@@ -178,11 +178,11 @@ if code.strip():  # 入力がある場合、自動で表示
               )
               st.plotly_chart(fig, use_container_width=True, config={
                   "staticPlot": False,
-                  "displayModeBar": False,
-                  "scrollZoom": False,
-                  "doubleClick": False,
-                  "editable": False,
-                  "selectable": False
+                  "displayModeBar": True,
+                  "scrollZoom": True,
+                  "doubleClick": True,
+                  "editable": True,
+                  "selectable": True
               })
 
         except Exception as e:
