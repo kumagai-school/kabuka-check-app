@@ -217,12 +217,18 @@ if recent_high and recent_low:
         else:
             st.warning("高値＞安値 の数値を正しく入力してください。")
 
+st.markdown("---")
+st.markdown("<h4>📌 <strong>注意事項</strong></h4>", unsafe_allow_html=True)
+
+st.markdown("""
+
+
 st.markdown("""
 <div style='color:red; font-size:14px;'>
 <ul>
-  <li>※ピックアップチャートの銘柄については、あくまで「ルール1」銘柄のレッスンとなります。</li>
-  <li>※特定の取引を推奨するものではなく、銘柄の助言ではございません。</li>
-  <li>※本サービスは利益を保証するものではなく、投資にはリスクが伴います。投資の際は自己責任でよろしくお願いいたします。</li>
+  <li>ピックアップチャートの銘柄については、あくまで「ルール1」銘柄のレッスンとなります。</li>
+  <li>特定の取引を推奨するものではなく、銘柄の助言ではございません。</li>
+  <li>本サービスは利益を保証するものではなく、投資にはリスクが伴います。投資の際は自己責任でよろしくお願いいたします。</li>
 </ul>
 </div>
 """, unsafe_allow_html=True)
