@@ -220,8 +220,6 @@ if recent_high and recent_low:
 st.markdown("---")
 st.markdown("<h4>📌 <strong>注意事項</strong></h4>", unsafe_allow_html=True)
 
-st.markdown("""
-
 
 st.markdown("""
 <div style='color:red; font-size:14px;'>
