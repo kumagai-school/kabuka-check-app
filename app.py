@@ -215,6 +215,25 @@ if recent_high and recent_low:
             green_box("上げ幅", f"{width:.2f}", "円")
             green_box("上げ幅の半値", f"{half}", "円")
             green_box("上げ幅の半値押し", f"{retrace}", "円")
+            st.markdown(
+                f"""
+                <a href="https://kzntk68d.autosns.app/cp/Rn8gETVMcu" target="_blank"
+                   style="
+                       display:inline-block;
+                       background-color:#2E86C1;
+                       color:white;
+                       padding:10px 20px;
+                       text-decoration:none;
+                       border-radius:5px;
+                       font-size:18px;
+                       font-weight:bold;
+                       margin-top:10px;
+                   ">
+                   Rポインターで指値算出する
+                </a>
+                """,
+                unsafe_allow_html=True
+            )
         else:
             st.warning("高値＞安値 の数値を正しく入力してください。")
 
