@@ -215,9 +215,12 @@ if recent_high and recent_low:
             green_box("上げ幅", f"{width:.2f}", "円")
             green_box("上げ幅の半値", f"{half}", "円")
             green_box("上げ幅の半値押し", f"{retrace}", "円")
+
+            r_pointer_url = f"https://kzntk68d.autosns.app/cp/Rn8gETVMcu?price={retrace}"
+
             st.markdown(
                 f"""
-                <a href="https://kzntk68d.autosns.app/cp/Rn8gETVMcu" target="_blank"
+                <a href="{r_pointer_url}" target="_blank"
                    style="
                        display:inline-block;
                        background-color:#2E86C1;
