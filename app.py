@@ -61,7 +61,7 @@ if not code or not code.isalnum():
 
 # --- キャッシュ化されたAPI呼び出し関数 ---
 
-@st.cache_data(ttl=3600) # 1時間キャッシュ (高値/安値データは頻繁に更新されないため)
+@st.cache_data(ttl=1800) # 30分キャッシュ (高値/安値データは頻繁に更新されないため)
 def get_highlow_data_cached(code):
     """高値/安値データと企業名を取得"""
     try:
@@ -283,4 +283,5 @@ st.markdown("""
 '>
 &copy; 2025 KumagaiNext All rights reserved.
 </div>
+
 """, unsafe_allow_html=True)
